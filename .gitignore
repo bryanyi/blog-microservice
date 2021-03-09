@@ -1,4 +1,12 @@
+.dbdata
 docker-compose.yml
 Dockerfile
 .env
-.env.dev
+.dbdata
+db.sqlite3
+__pycache__/
+*.log
+*.pot
+*.__pyc
+local_settings.py
+media
