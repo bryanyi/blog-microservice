@@ -10,3 +10,4 @@ __pycache__/
 *.__pyc
 local_settings.py
 media
+migrations
