@@ -3,12 +3,12 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from sqlalchemy import UniqueConstraint
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 
 app = Flask(__name__)
 # CONNECTING TO DATABASE
-app.config["SQLAlchemy_DATABASE_URI"] = os.getenv('SQLALCHEMY_URI')
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('SQLALCHEMY_URI')
 CORS(app)
 
 db = SQLAlchemy(app)
@@ -17,7 +17,6 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=False)
     title = db.Column(db.String(200))
     image = db.Column(db.String(200))
-    description = db.Column(db.String(1000))
     
 class ProductUser(db.Model):
     id=db.Column(db.Integer, primary_key=True)
@@ -31,7 +30,7 @@ class ProductUser(db.Model):
 
 @app.route('/')
 def index():
-    return 'Hellooooergergergergsergse!!!'
+    return 'Helloooo!!!'
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
