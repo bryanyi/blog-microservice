@@ -3,12 +3,11 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from sqlalchemy import UniqueConstraint
-# from dotenv import load_dotenv
-# load_dotenv()
+
 
 app = Flask(__name__)
 # CONNECTING TO DATABASE
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('SQLALCHEMY_URI')
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_URI")
 CORS(app)
 
 db = SQLAlchemy(app)
