@@ -3,7 +3,9 @@ from dotenv import load_dotenv
 import pika
 load_dotenv()
 
-params = pika.URLParameters(os.getenv("AMPQ"))
+ampq = os.getenv("AMPQ")
+
+params = pika.URLParameters(ampq)
 connection = pika.BlockingConnection(params)
 channel = connection.channel()
 
