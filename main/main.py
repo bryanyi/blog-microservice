@@ -1,11 +1,13 @@
 import os
 from dotenv import load_dotenv
+from flask_cors import CORS
 load_dotenv()
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config("SQLALCHEMY_DATABASE_URI") = os.getenv("SQL_ALCHEMY")
+CORS(app)
 
 @app.route('/')
 def index():
