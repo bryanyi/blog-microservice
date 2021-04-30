@@ -1,12 +1,13 @@
 import os
+from flask import Flask
 from dotenv import load_dotenv
 from flask_cors import CORS
 load_dotenv()
-from flask import Flask
+from sqlalchemy import UniqueConstraint
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config("SQLALCHEMY_DATABASE_URI") = os.getenv("SQL_ALCHEMY")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQL_ALCHEMY")
 CORS(app)
 
 db = SQLAlchemy(app)
@@ -16,6 +17,12 @@ class Product(db.Model):
     title = db.Column(db.String(200))
     image = db.Column(db.String(200))
     
+class ProductUser(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer)
+    product_id = db.Column(db.Integer)
+    
+    UniqueConstraint('user_id', 'product_id', name='user_product_unique')
 
 
 @app.route('/')
