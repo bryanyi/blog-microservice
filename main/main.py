@@ -5,6 +5,7 @@ from flask_cors import CORS
 load_dotenv()
 from sqlalchemy import UniqueConstraint
 from flask_sqlalchemy import SQLAlchemy
+from dataclasses import dataclass
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQL_ALCHEMY")
@@ -12,11 +13,13 @@ CORS(app)
 
 db = SQLAlchemy(app)
 
+@dataclass
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=False)
     title = db.Column(db.String(200))
     image = db.Column(db.String(200))
-    
+
+@dataclass    
 class ProductUser(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer)
