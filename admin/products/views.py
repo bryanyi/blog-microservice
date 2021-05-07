@@ -2,6 +2,7 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Product, User
+from .producer import publish
 from .serializers import ProductSerializer
 import random
 
@@ -11,6 +12,8 @@ class ProductViewSet(viewsets.ViewSet):
         products = Product.objects.all()
         # Serialize the data
         serializer = ProductSerializer(products, many=True)
+        #publish from rabbitMQ
+        publish()
         # Return the serialized data into response
         return Response(serializer.data)
     
