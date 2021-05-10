@@ -9,3 +9,8 @@ connection = pika.BlockingConnection(params)
 channel = connection.channel()
 
 channel.queue_declare(queue='admin')
+
+def callback(ch, method, properties, body):
+    pass
+
+channel.basic_consume(queue, on_message_callback)
